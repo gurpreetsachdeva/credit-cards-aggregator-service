@@ -1,6 +1,6 @@
 package com.github.gurpreetsachdeva.creditcardsaggregatorservice.model;
 
-public class CreditCardResponse {
+public class CreditCardResponse  implements Comparable<CreditCardResponse>{
 
 	private double apr;
 	private String name;
@@ -9,12 +9,12 @@ public class CreditCardResponse {
 	
 	
 
-	public CreditCardResponse(double d, String name, String provider, double e) {
+	public CreditCardResponse(double apr, String name, String provider, double cardScore) {
 		super();
-		this.apr = d;
+		this.apr = apr;
 		this.name = name;
 		this.provider = provider;
-		this.cardScore = e;
+		this.cardScore = cardScore;
 	}
 
 	public String getCardName() {
@@ -48,5 +48,13 @@ public class CreditCardResponse {
 	public void setCardScore(double cardScore) {
 		this.cardScore = cardScore;
 	}
+	
+	
+	@Override
+	 public int compareTo(CreditCardResponse u) {
+		
+		return Double.compare(getCardScore(), u.getCardScore());
+
+	  }
 
 }

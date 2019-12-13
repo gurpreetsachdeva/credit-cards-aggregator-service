@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.gurpreetsachdeva.creditcardsaggregatorservice.model.CreditCardResponse;
 import com.github.gurpreetsachdeva.creditcardsaggregatorservice.model.CreditCardUser;
+import com.github.gurpreetsachdeva.creditcardsaggregatorservice.service.ICardAggregatorService;
 
 @RestController
 public class CreditCardAggregatorController {
+	
+	private ICardAggregatorService cardService;
 
 
 	@PostMapping(
@@ -20,11 +24,12 @@ public class CreditCardAggregatorController {
 
 		List<CreditCardResponse> cards = new ArrayList<>();
 
-		cards.add(new CreditCardResponse(19.4, "ScoredCard Builder", "ScoredCards", 0.212));
-		cards.add(new CreditCardResponse(21.4, "SuperSaver Card", "CSCards", 0.137));
-		cards.add(new CreditCardResponse(19.2, "SuperSpender Card", "CSCards", 0.135));
-		// Call N Services and aggregate based on them
-		//
+		try {
+			cards=cardService.getCardsFromDifferentProviders(user);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return cards;
 	}
 
