@@ -2,15 +2,29 @@ package com.github.gurpreetsachdeva.creditcardsaggregatorservice.model;
 
 public class CreditCardUser {
 
-	private String creditScore;
+	@Override
+	public String toString() {
+		return "{\"creditScore\":" + creditScore + ",\"name\":\"" + name + "\",\"salary\":" + salary + "}";
+	}
+
+	private int creditScore;
 	private String name;
 	private int salary;
+	
+	
 
-	public String getCreditScore() {
+	public CreditCardUser(int creditScore, String name, int salary) {
+		super();
+		this.creditScore = creditScore;
+		this.name = name;
+		this.salary = salary;
+	}
+
+	public int getCreditScore() {
 		return creditScore;
 	}
 
-	public void setCreditScore(String creditScore) {
+	public void setCreditScore(int creditScore) {
 		this.creditScore = creditScore;
 	}
 
