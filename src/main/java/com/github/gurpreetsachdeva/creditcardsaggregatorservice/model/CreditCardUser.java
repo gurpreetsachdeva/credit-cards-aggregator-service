@@ -9,11 +9,11 @@ public class CreditCardUser {
 	@ApiModelProperty(notes = "Users full name", name = "name", required = true, value = "Gurpreet Sachdeva")
 	private String name;
 	@ApiModelProperty(notes = "Users annual salary", name = "salary", required = false, value = "100")
-	private int salary;
+	private Integer salary;
 
 
 
-	public CreditCardUser(int creditScore, String name, int salary) {
+	public CreditCardUser(int creditScore, String name, Integer salary) {
 		super();
 		this.creditScore = creditScore;
 		this.name = name;
@@ -36,11 +36,11 @@ public class CreditCardUser {
 		this.name = name;
 	}
 
-	public int getSalary() {
+	public Integer getSalary() {
 		return salary;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(Integer salary) {
 		this.salary = salary;
 	}
 
