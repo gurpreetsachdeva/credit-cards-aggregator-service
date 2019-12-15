@@ -52,10 +52,9 @@ public class UpStreamServiceConfig {
 		this.normalizedScale = normalizedScale;
 	}
 
-	public static void main(String[] args) {
-		
-		UpStreamServiceConfig service1=new UpStreamServiceConfig("https://app.clearscore.com/api/global/backend-tech-test/v1/cards", 10, "eligibility","ServiceName1" );
-
-		
+	@Override
+	public String toString() {
+		return "UpStreamServiceConfig [url=" + url + ", field=" + field + ", serviceName=" + serviceName
+				+ ", normalizedScale=" + normalizedScale + "]";
 	}
 }

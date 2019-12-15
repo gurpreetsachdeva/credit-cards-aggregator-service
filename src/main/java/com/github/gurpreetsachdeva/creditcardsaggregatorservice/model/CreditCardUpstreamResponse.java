@@ -5,7 +5,7 @@ public class CreditCardUpstreamResponse {
 			
 	private String cardName;
 	private double apr;
-	private double eligibility;
+	private double  eligibility;
 	private double approvalRating;
 	private String card;
 	

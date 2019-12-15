@@ -34,8 +34,6 @@ public class CreditCardsAggregatorServiceApplication implements ApplicationRunne
 	            logger.info("arg-" + name + "=" + args.getOptionValues(name));
 	        }
 
-	        //boolean containsOption = args.containsOption("testkey");
-	        //logger.info("Contains test.key: " + containsOption);
 	    }
 
 }

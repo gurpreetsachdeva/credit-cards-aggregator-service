@@ -82,5 +82,6 @@ fi
 
 
 
-echo "spring-boot:run" ,$PORT $SERVICE1 $SERVICE2
-./mvnw spring-boot:run $PORT $SERVICE1 $SERVICE2
+echo "spring-boot:run" --server.port=$PORT $SERVICE1 $SERVICE2
+
+./mvnw spring-boot:run --server.port=$PORT,--service.endpoints=$SERVICE1 $SERVICE2
