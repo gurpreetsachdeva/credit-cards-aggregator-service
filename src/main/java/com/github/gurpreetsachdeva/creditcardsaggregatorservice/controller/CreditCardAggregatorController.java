@@ -15,7 +15,13 @@ import com.github.gurpreetsachdeva.creditcardsaggregatorservice.model.CreditCard
 import com.github.gurpreetsachdeva.creditcardsaggregatorservice.model.CreditCardUser;
 import com.github.gurpreetsachdeva.creditcardsaggregatorservice.service.ICardAggregatorService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
+@Api(value = "CreditCardAggregatorController", description = "REST APIs for Credit Card Aggregation")
 public class CreditCardAggregatorController {
 	
 	@Autowired
@@ -32,6 +38,12 @@ public class CreditCardAggregatorController {
 
 	@PostMapping(
 			  value = "/creditcards", consumes = "application/json", produces = "application/json")
+	@ApiOperation(value = "Get list of Eligible cards for a user from different microservices", response = Iterable.class, tags = "getCards")
+	@ApiResponses(value = { 
+	            @ApiResponse(code = 200, message = "Success|OK"),
+	            @ApiResponse(code = 401, message = "not authorized!"), 
+	            @ApiResponse(code = 403, message = "forbidden!!!"),
+	            @ApiResponse(code = 404, message = "not found!!!") })
 	List<CreditCardResponse> getCards(@RequestBody CreditCardUser user) {
 		
         logger.info("Credit Card User: {}",user);
