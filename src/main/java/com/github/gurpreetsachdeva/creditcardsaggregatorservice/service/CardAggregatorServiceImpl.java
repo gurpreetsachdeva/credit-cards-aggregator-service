@@ -4,10 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.json.JSONObject;
@@ -15,11 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySources;
-import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.MapPropertySource;
-import org.springframework.core.env.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -76,9 +69,9 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 
 		CardAggregatorServiceImpl test = new CardAggregatorServiceImpl();
 		CreditCardUser user = new CreditCardUser(700, "John", 28000, 700);
-		// List<CreditCardResponse> result2 = test.getCardsFromDifferentProviders(user);
+		List<CreditCardResponse> result2 = test.getCardsFromDifferentProviders(user);
 
-		// System.out.println(result2.size());
+		System.out.println(result2.size());
 		System.out.println("Exit Successful");
 		test.readUpstreamConfigs();
 
@@ -99,21 +92,15 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 		personJsonObject.put("name", user.getName());
 		personJsonObject.put("score", user.getCreditScore());
 		personJsonObject.put("salary", user.getSalary());
-		// HttpEntity<String> request = new
-		// HttpEntity<String>(personJsonObject.toString(), headers);
-
+	
 		HttpEntity<String> entity = new HttpEntity<String>(personJsonObject.toString(), headers);
 
 		RestTemplate restTemplate = new RestTemplate();
 
 		ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.POST, entity, String.class);
-		// ResponseEntity<String> result=restTemplate.exchange
-
+	
 		String personResultAsJsonStr = restTemplate.postForObject(uri, entity, String.class);
 
-		// postForObject
-		System.out.println(personResultAsJsonStr);
-		System.out.println(result.getBody());
 		ObjectMapper mapper = new ObjectMapper();
 
 		CreditCardUpstreamResponse[] response = mapper.readValue(personResultAsJsonStr,
