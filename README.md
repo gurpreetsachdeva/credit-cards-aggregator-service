@@ -1,10 +1,10 @@
-##Requirements
+Requirements
 ================
 
 We need to create a Credit Card aggregation service which pulls in the data from "N" providers , do a quick score using their data and returns the response as a json.
 
 
-##Design
+Design
 ===========
 High Level Design
 
@@ -12,7 +12,7 @@ Create an API Endpoint which implements the specification given in the microserv
 
 
 
-##Technologies Used
+Technologies Used
 ===========
 1. Java8
 2. Spring Boot
@@ -20,7 +20,7 @@ Create an API Endpoint which implements the specification given in the microserv
 4. AWS for Deployment
 5. Maven as a build system
 
-##Deployment
+Deployment
 ===========
 
 1. ssh -i "AWS_KEY" box_public_DNS
@@ -31,7 +31,7 @@ Create an API Endpoint which implements the specification given in the microserv
 6. Make sure you allow the security group to query the port opened in previous step,port_no.
 
 
-#Running Commands
+Running Commands
 ======================
 
 1. ./start.sh  : Will pick up default end points or overwrite them using environment variables HTTP_PORT,CSCARDS_ENDPOINT,SCOREDCARDS_ENDPOINT.
@@ -41,7 +41,7 @@ E.g
 
 3. ./stop.sh : Kill the running service. Fetch the pid and just kills that java process.
 
-#Swagger UI
+Swagger UI
 ===========
 http://localhost:8080/credit-cards-aggregator-service/swagger-ui.html
 
