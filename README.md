@@ -1,6 +1,9 @@
 ##Requirements
-===========
+================
+
 We need to create a Credit Card aggregation service which pulls in the data from "N" providers , do a quick score using their data and returns the response as a json.
+
+
 ##Design
 ===========
 High Level Design
@@ -41,5 +44,6 @@ E.g
 #Swagger UI
 ===========
 http://localhost:8080/credit-cards-aggregator-service/swagger-ui.html
+
 http://ec2-13-59-150-60.us-east-2.compute.amazonaws.com:8080/credit-cards-aggregator-service/swagger-ui.html
 
