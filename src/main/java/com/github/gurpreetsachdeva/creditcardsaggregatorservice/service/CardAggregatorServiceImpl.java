@@ -152,6 +152,7 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 			}
             
 			cardScore = calculateScore(normalizedScale, res.getApr(), (Double)propValue);
+		
 
 			CreditCardResponse card = new CreditCardResponse(res.getApr(), res.getCardName(), upstreamServiceName,
 					cardScore);
