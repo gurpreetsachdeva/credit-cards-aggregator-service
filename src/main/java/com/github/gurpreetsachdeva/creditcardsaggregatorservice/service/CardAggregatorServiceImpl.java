@@ -40,7 +40,7 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 
 	@Override
 	public List<CreditCardResponse> getCardsFromDifferentProviders(CreditCardUser user)
-			throws JsonMappingException, JsonProcessingException {
+			 {
 		// TODO Auto-generated method stub
 
 		List<CreditCardResponse> cards = new ArrayList<>();
@@ -50,11 +50,20 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 		logger.info("Inside Service Layer for fetching records");
 		for (UpStreamServiceConfig upstreamService : services) {
 
-			List<CreditCardResponse> upstreamResponse = getDataFromUpstream(user, upstreamService);
+			List<CreditCardResponse> upstreamResponse;
+			try {
+				upstreamResponse = getDataFromUpstream(user, upstreamService);
+				logger.info("Upstream Response {}", upstreamResponse);
 
-			logger.info("Upstream Response {}", upstreamResponse);
+				cards.addAll(upstreamResponse);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				logger.info("Service Broke : {}", upstreamService);
+			} 
 
-			cards.addAll(upstreamResponse);
+			
 
 		}
 		logger.info("Total Objects in Response :{}", cards.size());
