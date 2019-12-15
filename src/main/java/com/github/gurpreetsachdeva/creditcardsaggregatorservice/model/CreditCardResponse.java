@@ -53,7 +53,7 @@ public class CreditCardResponse  implements Comparable<CreditCardResponse>{
 	@Override
 	 public int compareTo(CreditCardResponse u) {
 		
-		return Double.compare(getCardScore(), u.getCardScore());
+		return Double.compare( u.getCardScore(),getCardScore());
 
 	  }
 

@@ -10,14 +10,24 @@ public class CreditCardUser {
 	private int creditScore;
 	private String name;
 	private int salary;
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	private int score;
 	
 	
 
-	public CreditCardUser(int creditScore, String name, int salary) {
+	public CreditCardUser(int creditScore, String name, int salary,int score) {
 		super();
 		this.creditScore = creditScore;
 		this.name = name;
 		this.salary = salary;
+		this.score=score;
 	}
 
 	public int getCreditScore() {
