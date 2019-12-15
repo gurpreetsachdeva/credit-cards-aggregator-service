@@ -1,14 +1,17 @@
 package com.github.gurpreetsachdeva.creditcardsaggregatorservice.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class CreditCardUser {
 
-	@Override
-	public String toString() {
-		return "{\"creditScore\":" + creditScore + ",\"name\":\"" + name + "\",\"salary\":" + salary + "}";
-	}
-
+	
+	
+	@ApiModelProperty(notes = "Credit Score of the user",name="creditScore",required=true,value="555")
 	private int creditScore;
+	@ApiModelProperty(notes = "Name of the user",name="name",required=true,value="Gurpreet Sachdeva")
 	private String name;
+	@ApiModelProperty(notes = "Salary of the user",name="salary",required=false,value="100")
+
 	private int salary;
 	public int getScore() {
 		return score;
@@ -54,4 +57,8 @@ public class CreditCardUser {
 		this.salary = salary;
 	}
 
+	@Override
+	public String toString() {
+		return "{\"creditScore\":" + creditScore + ",\"name\":\"" + name + "\",\"salary\":" + salary + "}";
+	}
 }

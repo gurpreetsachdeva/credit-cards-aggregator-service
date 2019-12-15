@@ -9,9 +9,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@SpringBootApplication(scanBasePackages = { "com.github.gurpreetsachdeva.creditcardsaggregatorservice"})
 @SpringBootApplication
-//@SpringBootApplication(scanBasePackages={"com.github.gurpreetsachdeva.creditcardsaggregatorservice.service", "com.github.gurpreetsachdeva.creditcardsaggregatorservice.controller"})
 public class CreditCardsAggregatorServiceApplication implements ApplicationRunner{
 	
 	
