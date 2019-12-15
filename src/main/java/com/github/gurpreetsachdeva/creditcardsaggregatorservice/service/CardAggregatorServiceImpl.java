@@ -15,9 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -84,20 +82,17 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		headers.add("user-agent",
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+		headers.add(ServiceConstants.user_agent,ServiceConstants.browser);
 
 		JSONObject personJsonObject = new JSONObject();
-		personJsonObject.put("creditScore", user.getCreditScore());
-		personJsonObject.put("name", user.getName());
-		personJsonObject.put("score", user.getCreditScore());
-		personJsonObject.put("salary", user.getSalary());
+		personJsonObject.put(ServiceConstants.CREDIT_SCORE, user.getCreditScore());
+		personJsonObject.put(ServiceConstants.NAME, user.getName());
+		personJsonObject.put(ServiceConstants.SCORE, user.getCreditScore());
+		personJsonObject.put(ServiceConstants.SALARY, user.getSalary());
 	
 		HttpEntity<String> entity = new HttpEntity<String>(personJsonObject.toString(), headers);
 
 		RestTemplate restTemplate = new RestTemplate();
-
-		ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.POST, entity, String.class);
 	
 		String personResultAsJsonStr = restTemplate.postForObject(uri, entity, String.class);
 
@@ -105,8 +100,6 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 
 		CreditCardUpstreamResponse[] response = mapper.readValue(personResultAsJsonStr,
 				CreditCardUpstreamResponse[].class);
-
-		// restTemplate.exchange()
 
 		List<CreditCardUpstreamResponse> res = new ArrayList<>();
 		Collections.addAll(res, response);
@@ -143,8 +136,11 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 			}
 
 			cardScore = calculateScore(normalizedScale, res.getApr(), (Double) propValue);
+			String name=res.getCardName();
+			if(name==null)
+				name=res.getCard();
 
-			CreditCardResponse card = new CreditCardResponse(res.getApr(), res.getCardName(), upstreamServiceName,
+			CreditCardResponse card = new CreditCardResponse(res.getApr(), name, upstreamServiceName,
 					cardScore);
 
 			cards.add(card);
@@ -173,7 +169,6 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 
 		for (String configSplit : configUpstream) {
 			String[] config = configSplit.split("\\$");
-			logger.info("After breaking the config :{}",config);
 			logger.info("After breaking the config :{}",config.length);
 
 			UpStreamServiceConfig ups=new UpStreamServiceConfig(config[1], Integer.valueOf(config[2]), config[3], config[0]);
