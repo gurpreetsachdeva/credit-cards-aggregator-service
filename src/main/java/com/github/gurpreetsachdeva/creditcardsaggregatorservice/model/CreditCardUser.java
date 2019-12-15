@@ -11,22 +11,13 @@ public class CreditCardUser {
 	@ApiModelProperty(notes = "Users annual salary", name = "salary", required = false, value = "100")
 	private int salary;
 
-	public int getScore() {
-		return score;
-	}
 
-	public void setScore(int score) {
-		this.score = score;
-	}
 
-	private int score;
-
-	public CreditCardUser(int creditScore, String name, int salary, int score) {
+	public CreditCardUser(int creditScore, String name, int salary) {
 		super();
 		this.creditScore = creditScore;
 		this.name = name;
 		this.salary = salary;
-		this.score = score;
 	}
 
 	public int getCreditScore() {

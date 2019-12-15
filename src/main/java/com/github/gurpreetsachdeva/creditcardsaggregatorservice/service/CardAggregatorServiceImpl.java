@@ -76,7 +76,7 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 	public static void main(String[] args) throws Exception {
 
 		CardAggregatorServiceImpl test = new CardAggregatorServiceImpl();
-		CreditCardUser user = new CreditCardUser(700, "John", 28000, 700);
+		CreditCardUser user = new CreditCardUser(700, "John", 28000);
 		List<CreditCardResponse> result2 = test.getCardsFromDifferentProviders(user);
 
 		System.out.println(result2.size());
