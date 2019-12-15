@@ -86,7 +86,7 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 	}
 
 	private List<CreditCardResponse> getDataFromUpstream(CreditCardUser user, UpStreamServiceConfig upstreamService)
-			throws JsonMappingException, JsonProcessingException {
+			throws JsonMappingException, JsonProcessingException ,IOException{
 		final String uri = upstreamService.getUrl();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -111,14 +111,11 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 
 
 		CreditCardUpstreamResponse[] response;
-		try {
+		
 			response = mapper.readValue(personResultAsJsonStr,
 					CreditCardUpstreamResponse[].class);
 			Collections.addAll(res, response);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 
 		
 
