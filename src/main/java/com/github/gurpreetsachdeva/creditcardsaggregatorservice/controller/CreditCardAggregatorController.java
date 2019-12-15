@@ -32,7 +32,7 @@ public class CreditCardAggregatorController {
 
 	@PostMapping(
 			  value = "/creditcards", consumes = "application/json", produces = "application/json")
-	List<CreditCardResponse> newEmployee(@RequestBody CreditCardUser user) {
+	List<CreditCardResponse> getCards(@RequestBody CreditCardUser user) {
 		
         logger.info("Credit Card User: {}",user);
 

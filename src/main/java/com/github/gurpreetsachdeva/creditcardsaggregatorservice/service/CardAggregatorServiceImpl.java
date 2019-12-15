@@ -1,5 +1,6 @@
 package com.github.gurpreetsachdeva.creditcardsaggregatorservice.service;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -106,12 +107,20 @@ public class CardAggregatorServiceImpl implements ICardAggregatorService {
 		String personResultAsJsonStr = restTemplate.postForObject(uri, entity, String.class);
 
 		ObjectMapper mapper = new ObjectMapper();
-
-		CreditCardUpstreamResponse[] response = mapper.readValue(personResultAsJsonStr,
-				CreditCardUpstreamResponse[].class);
-
 		List<CreditCardUpstreamResponse> res = new ArrayList<>();
-		Collections.addAll(res, response);
+
+
+		CreditCardUpstreamResponse[] response;
+		try {
+			response = mapper.readValue(personResultAsJsonStr,
+					CreditCardUpstreamResponse[].class);
+			Collections.addAll(res, response);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
 
 		List<CreditCardResponse> resp = responseConverter(res, upstreamService.getNormalizedScale(),
 				upstreamService.getField(), upstreamService.getServiceName());
