@@ -29,6 +29,7 @@ Deployment
 4. tar -xvzf fileName.tar.gz or git clone https://github.com/gurpreetsachdeva/credit-cards-aggregator-service
 5. ./start.sh -p port_no &
 6. Make sure you allow the security group to query the port opened in previous step,port_no.
+7. Use Supervisord or /etc/init.d to run this as a service instead.
 
 
 Running Commands
